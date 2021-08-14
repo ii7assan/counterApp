@@ -68,7 +68,8 @@ export default {
   props: {
     year: Number,
     month: Number,
-    date: Number,
+    day: Number,
+    hours: Number,
     minutes: Number,
     seconds: Number,
     milliseconds: Number,
@@ -84,29 +85,29 @@ export default {
     _days() {
       return this._hours * 24;
     },
-    // endTime() {
-    //   return new Date(
-    //     this.year,
-    //     this.month,
-    //     this.date,
-    //     this.hour,
-    //     this.minutes,
-    //     this.seconds,
-    //     this.milliseconds
-    //   ).getTime();
-    // },
+    _end() {
+      return new Date(
+        this.year,
+        this.month,
+        this.day,
+        this.hours,
+        this.minutes,
+        this.seconds,
+        this.milliseconds
+      ).getTime();
+    },
   },
   mounted() {
     this.showRemaning();
-    console.log(this.displayDays);
+    console.log(this.$props);
   },
   methods: {
     formatDate: (num) => (num < 10 ? "0" + num : num),
     showRemaning() {
       const timer = setInterval(() => {
         const now = new Date().getTime();
-        const end = new Date(2021,10,1,4,5,4,4).getTime()
-        const distance = end - now;
+        // const end = new Date(2021,10,1,4,5,4,4).getTime()
+        const distance = this._end - now;
 
         if (distance < 0) {
           clearInterval(timer);
