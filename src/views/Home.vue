@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Counter />
+      <Counter :year="2022" :month="10" :date="1" :hour="10" :minutes="5" :milliseconds="5"/>
   </div>
 </template>
 
@@ -10,5 +10,8 @@ import Counter from '../components/counter.vue'
     components: {
       Counter
     },
+    data: () => ({
+      
+    })
   }
 </script>
